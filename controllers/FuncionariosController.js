@@ -52,8 +52,16 @@ const FuncionarioController = {
                 return Number(funcionario.salario) <= Number(salario);
             });
 
-            res.send(resultadoBusca);
-            
+            res.send(resultadoBusca);  
+        }
+
+        if(req.query.status){
+            let {status} = req.query;
+            let resultadoBusca = data.filter(funcionario => {
+                return funcionario.status == status;
+            });
+
+            res.send(resultadoBusca);  
         }
     }
 }
