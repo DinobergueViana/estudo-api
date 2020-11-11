@@ -10,8 +10,18 @@ const FuncionarioController = {
             });
 
             res.send(resultadoBusca);
+
         }
-        
+
+        if(req.query.cpf){
+            let {cpf} = req.query;
+            let resultadoBusca = data.find(funcionario => {
+                return funcionario.cpf == cpf;
+            });
+
+            res.send(resultadoBusca);
+        }
     }
 }
+
 module.exports = FuncionarioController;
