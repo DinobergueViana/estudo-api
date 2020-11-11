@@ -39,6 +39,12 @@ const FuncionarioController = {
 
             res.send(resultadoBusca);
         }
+
+        if(req.query.ufNasc){
+            let {ufNasc} = req.query;
+            res.send('Uf de nascimento: ' + ufNasc);
+            
+        }
     }
 }
 
