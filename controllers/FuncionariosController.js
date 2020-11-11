@@ -30,6 +30,15 @@ const FuncionarioController = {
 
             res.send(resultadoBusca);
         }
+
+        if(req.query.dataCad){
+            let {dataCad} = req.query;
+            let resultadoBusca = data.filter(funcionario => {
+                return funcionario.dataCad == dataCad;
+            });
+
+            res.send(resultadoBusca);
+        }
     }
 }
 
