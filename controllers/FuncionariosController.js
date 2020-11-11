@@ -21,6 +21,15 @@ const FuncionarioController = {
 
             res.send(resultadoBusca);
         }
+
+        if(req.query.cargo){
+            let {cargo} = req.query;
+            let resultadoBusca = data.filter(funcionario => {
+                return funcionario.cargo == cargo;
+            });
+
+            res.send(resultadoBusca);
+        }
     }
 }
 
