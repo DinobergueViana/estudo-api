@@ -45,6 +45,16 @@ const FuncionarioController = {
             res.send('Uf de nascimento: ' + ufNasc);
             
         }
+
+        if(req.query.salario){
+            let {salario} = req.query;
+            let resultadoBusca = data.filter(funcionario => {
+                return Number(funcionario.salario) <= Number(salario);
+            });
+
+            res.send(resultadoBusca);
+            
+        }
     }
 }
 
