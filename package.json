@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/DinobergueViana/desafio-allugator#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
   }
 }

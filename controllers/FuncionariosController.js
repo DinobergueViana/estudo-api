@@ -66,6 +66,22 @@ const FuncionarioController = {
     },
     cadastrarFuncionario: (req, res) => {
         res.render('form');
+    },
+    salvarFuncionario: (req, res) => {
+        let { dataCad, cargo, cpf, nome, ufNasc, salario, status } = req.body;
+        // dataCad = dataCad.split('-').reverse().join('/');
+
+        let funcionario = {
+            dataCad, 
+            cargo, 
+            cpf, 
+            nome, 
+            ufNasc, 
+            salario, 
+            status
+        }
+
+        res.send(funcionario)
     }
 }
 
