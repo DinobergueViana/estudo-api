@@ -104,6 +104,28 @@ const FuncionarioController = {
         fs.writeFileSync(path.join('database', 'data.json'), JSON.stringify(data));
 
         res.send('Ação realizada com sucesso')
+    },
+    exibirFormulario: (req, res) => {
+        res.render('deletarFuncionario')
+    },
+    excluirFormulario: (req, res) => {
+        let {cpf} = req.body;
+        let newData = null;
+
+        if(cpf.length < 11){
+            res.send('CPF inválido! Verique se digitou corretamente...')
+        }else{
+            newData = data.filter(funcionario => {
+                return funcionario.cpf != cpf;
+            })
+        }
+
+        res.send(newData)
+        
+        // adiciona as informações na base de dados sem o funcionario enviado via formulario
+        fs.writeFileSync(path.join('database', 'data.json'), JSON.stringify(newData));
+
+        res.send('Excluindo funcionario...')
     }
 }
 
