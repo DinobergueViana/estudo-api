@@ -6,26 +6,26 @@
     <title>Cadastro de funcionário</title>
 </head>
 <body>
-    <form action="/cadastrar" method="POST">
+    <form action="/funcionario/cadastrar" method="POST">
         <label for="dataCad">Data de criação:</label>
         <br>
-        <input type="date" name="dataCad" id="dataCad">
+        <input type="date" name="dataCad" id="dataCad" required>
         <br><br>
         <label for="cargo">Cargo:</label>
         <br>
-        <input type="text" name="cargo" id="cargo">
+        <input type="text" name="cargo" id="cargo" required>
         <br><br>
         <label for="cpf">Cpf:</label>
         <br>
-        <input type="text" name="cpf" id="cpf">
+        <input type="text" name="cpf" id="cpf" required>
         <br><br>
         <label for="cpf">Nome:</label>
         <br>
-        <input type="text" name="nome" id="nome">
+        <input type="text" name="nome" id="nome" required>
         <br><br>
         <label for="ufNasc">UF de Nascimento:</label>
         <br><br>
-        <select name="ufNasc" id="ufNasc">
+        <select name="ufNasc" id="ufNasc" required>
             <option disabled selected>Selecione uma UF de Nascimento</option>
             <option value="RO">RO</option>
             <option value="AC">AC</option>
@@ -58,11 +58,11 @@
         <br><br>
         <label for="salario">Salario:</label>
         <br>
-        <input type="text" name="salario" id="salario">
+        <input type="text" name="salario" id="salario" required>
         <br><br>
         <label for="status">Status:</label>
         <br>
-        <input type="text" name="status" id="status">
+        <input type="text" name="status" id="status" required>
         <br><br>
         <button type="submit">Enviar</button>
     </form>

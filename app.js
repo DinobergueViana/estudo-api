@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(methodOverride('_method'));
 
-app.use('/', funcionarioRouter);
+app.use('/funcionario', funcionarioRouter);
 
 app.listen(3000, () => {
     console.log('Servidor rodando');
