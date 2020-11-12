@@ -63,6 +63,9 @@ const FuncionarioController = {
 
             res.send(resultadoBusca);  
         }
+    },
+    cadastrarFuncionario: (req, res) => {
+        res.render('form');
     }
 }
 
