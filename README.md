@@ -17,7 +17,7 @@ que estou fazendo atualmente.
 
 ## Setup 
 
-Para que o projeto funcione de maneira adequada, é necessário ter o NodeJS instalado na sua máquina. Feito isso, basta seguir os seguintes passos para rodar a aplicação:
+Para que o projeto funcione de maneira adequada, é necessário ter o NodeJS instalado na sua máquina. Após a instalação (se for o seu caso), basta seguir os seguintes passos para rodar a aplicação:
 
 1. clonar o repositório;
 2. abrir o projeto com o Visual Studio Code;
