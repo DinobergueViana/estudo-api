@@ -119,7 +119,7 @@ const FuncionarioController = {
         }
     },
     cadastrarFuncionario: (req, res) => {
-        res.render('form');
+        res.render('formCadastro');
     },
     salvarFuncionario: (req, res) => {
         let { dataCad, cargo, cpf, nome, ufNasc, salario, status } = req.body;
@@ -158,7 +158,7 @@ const FuncionarioController = {
         res.send('Ação realizada com sucesso')
     },
     exibirFormulario: (req, res) => {
-        res.render('deletarFuncionario')
+        res.render('formCadastro')
     },
     excluirFormulario: (req, res) => {
         let {cpf} = req.body;

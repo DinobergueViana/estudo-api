@@ -1,0 +1,23 @@
+div.container > nav {
+    margin-bottom: 20px;
+}
+
+ul.navbar-nav {
+    flex-direction: row;
+}
+
+ul.navbar-nav a {
+    margin-right: 1rem;
+}
+
+form {
+    margin-top: 2rem;
+}
+
+/* input {
+    width: 50%;
+} */
+
+button {
+    margin-left: 1rem;
+}
