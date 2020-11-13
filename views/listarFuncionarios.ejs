@@ -13,10 +13,10 @@
         <a class="navbar-brand">Allugator</a>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link" href="/funcionarios">Pesquisar <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/funcionarios">Listar <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/funcionarios/cadastrar">Cadastrar</a>
+            <a class="nav-link" href="/funcionarios/criar">Cadastrar</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/funcionarios/excluir">Exluir</a>
@@ -49,31 +49,31 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="nome" role="tabpanel" aria-labelledby="nome-tab">
-            <form action="/funcionarios/pesquisar" class="form-group">
+            <form action="/funcionarios/listar" class="form-group">
                 <input type="text" name="nome" id="nome" required>
                 <button class="btn btn-primary">Pesquisar</button>
             </form>
         </div>
         <div class="tab-pane fade" id="cpf" role="tabpanel" aria-labelledby="cpf-tab">
-          <form action="/funcionarios/pesquisar" class="form-group">
+          <form action="/funcionarios/listar" class="form-group">
             <input type="text" name="cpf" id="cpf" placeholder="Apenas números" required>
             <button class="btn btn-primary">Pesquisar</button>
           </form>
         </div>
         <div class="tab-pane fade" id="cargo" role="tabpanel" aria-labelledby="cargo-tab">
-          <form action="/funcionarios/pesquisar" class="form-group">
+          <form action="/funcionarios/listar" class="form-group">
             <input type="text" name="cargo" id="cargo" required>
             <button class="btn btn-primary">Pesquisar</button>
           </form>
         </div>
         <div class="tab-pane fade" id="dataCad" role="tabpanel" aria-labelledby="dataCad-tab">
-          <form action="/funcionarios/pesquisar" class="form-group">
+          <form action="/funcionarios/listar" class="form-group">
             <input type="date" name="dataCad" id="dataCad" required>
             <button class="btn btn-primary">Pesquisar</button>
           </form>
         </div>
         <div class="tab-pane fade" id="ufNasc" role="tabpanel" aria-labelledby="ufNasc-tab">
-          <form action="/funcionarios/pesquisar" class="form-group">
+          <form action="/funcionarios/listar" class="form-group">
             <select name="ufNasc" id="ufNasc" required>
               <option disabled selected>Selecione uma UF de Nascimento</option>
               <option value="RO">RO</option>
@@ -108,13 +108,13 @@
           </form>
         </div>
         <div class="tab-pane fade" id="salario" role="tabpanel" aria-labelledby="salario-tab">
-          <form action="/funcionarios/pesquisar" class="form-group">
+          <form action="/funcionarios/listar" class="form-group">
             <input type="text" name="salario" id="salario" required>
             <button class="btn btn-primary">Pesquisar</button>
           </form>
         </div>
         <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
-          <form action="/funcionarios/pesquisar" class="form-group">
+          <form action="/funcionarios/listar" class="form-group">
             <input type="text" name="status" id="status" required>
             <button class="btn btn-primary">Pesquisar</button>
           </form>

@@ -4,11 +4,11 @@ const fs = require('fs');
 
 const FuncionarioController = {
     exibirOpcoes: (req, res) => {
-        res.render('pesquisarFuncionarios');
+        res.render('listarFuncionarios');
     },
 
     // pesquisa e retonar um funcionario de acordo com o tipo de requisição
-    pesquisarFuncionarios: (req, res) => {
+    listarFuncionarios: (req, res) => {
 
         // pesquisa por nome
         if(req.query.nome){
@@ -125,8 +125,8 @@ const FuncionarioController = {
             }  
         }
     },
-    cadastrarFuncionario: (req, res) => {
-        res.render('formCadastro');
+    criarFuncionario: (req, res) => {
+        res.render('criarFuncionario');
     },
     salvarFuncionario: (req, res) => {
         let { dataCad, cargo, cpf, nome, ufNasc, salario, status } = req.body;
@@ -152,9 +152,11 @@ const FuncionarioController = {
             
         })
 
-        // atualiza ou cadastra um funcionario
+        // atualiza funcionario
         if(pesquisaFuncionario){
             funcionarios[indice - 1] = funcionario;
+
+        // cadastra um funcionario
         }else{
             funcionarios.push(funcionario);
         }
@@ -164,13 +166,10 @@ const FuncionarioController = {
 
         res.send('Ação realizada com sucesso')
     },
-    exibirFormulario: (req, res) => {
-        res.render('formCadastro')
-    },
-    exibirFormExcluirFuncionario: (req, res) => {
+    exibirExcluirFuncionario: (req, res) => {
         res.render('excluirFuncionario');
     },
-    excluirFormulario: (req, res) => {
+    excluirFuncionario: (req, res) => {
         let {cpf} = req.body;
         let novaListaFuncionarios = null;
 
