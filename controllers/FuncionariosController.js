@@ -3,8 +3,12 @@ const path = require('path');
 const fs = require('fs');
 
 const FuncionarioController = {
+    exibirOpcoes: (req, res) => {
+        res.render('pesquisarFuncionarios');
+    },
+
     // pesquisa e retonar um funcionario de acordo com o tipo de requisição
-    exibirFuncionarios: (req, res) => {
+    pesquisarFuncionarios: (req, res) => {
 
         // pesquisa por nome
         if(req.query.nome){
@@ -25,8 +29,7 @@ const FuncionarioController = {
         if(req.query.cpf){
             let {cpf} = req.query;
             let resultadoBusca = null;
-
-            console.log(typeof(cpf));
+            
             // validando cpf
             if(!cpf || cpf.length != 11){
                 res.send('CPF inválido...')
@@ -51,7 +54,7 @@ const FuncionarioController = {
             });
 
             if(resultadoBusca.length == 0){
-                res.send('Funcionario não encontrado!');
+                res.send('Nenhum funcionário foi encontrado');
             }else{
                 res.send(resultadoBusca);
             }
@@ -60,12 +63,16 @@ const FuncionarioController = {
         // pesquisa por data de cadastro
         if(req.query.dataCad){
             let {dataCad} = req.query;
+
+            // converte a data recebida para formato dd/mm/yyyy
+            dataCad = dataCad.split('-').reverse().join('/');
+
             let resultadoBusca = funcionarios.filter(funcionario => {
                 return funcionario.dataCad == dataCad;
             });
 
-            if(!resultadoBusca){
-                res.send('Funcionario não encontrado!');
+            if(resultadoBusca.length == 0){
+                res.send('Nenhum funcionário foi encontrado');
             }else{
                 res.send(resultadoBusca);
             }
@@ -111,7 +118,7 @@ const FuncionarioController = {
                 return funcionario.status == status;
             });
 
-            if(!resultadoBusca){
+            if(resultadoBusca.length == 0){
                 res.send('Funcionario não encontrado!');
             }else{
                 res.send(resultadoBusca);
@@ -159,6 +166,9 @@ const FuncionarioController = {
     },
     exibirFormulario: (req, res) => {
         res.render('formCadastro')
+    },
+    exibirFormExcluirFuncionario: (req, res) => {
+        res.render('excluirFuncionario');
     },
     excluirFormulario: (req, res) => {
         let {cpf} = req.body;
