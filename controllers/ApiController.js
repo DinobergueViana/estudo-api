@@ -90,7 +90,7 @@ const ApiController = {
         let { dataCad, cargo, cpf, nome, ufNasc, salario, status } = req.body;
 
         if( !(dataCad && cargo && cpf && nome && ufNasc && salario && status) ){
-            res.status(422).send({error: 'paramentros inválidos'})
+            return res.status(422).send({error: 'paramentros inválidos'})
         }
 
         let funcionario = {
