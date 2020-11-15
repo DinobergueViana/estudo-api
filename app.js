@@ -1,6 +1,6 @@
 const express = require('express');
 const funcionariosRouter = require('./routes/funcionariosRouter');
-const indexRouter = require('./routes/indexRouter');
+const apiRouter = require('./routes/apiRouter');
 const path = require('path')
 const methodOverride = require('method-override');
 
@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // essa configuração permite usar o metodos PUT e DELETE que não estão presentes em todos os navegadores
 app.use(methodOverride('_method'));
 
-app.use('/', indexRouter);
+app.use('/api/funcionarios', apiRouter);
 app.use('/funcionarios', funcionariosRouter);
 
 // levantando servidor
