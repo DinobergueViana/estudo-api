@@ -3,127 +3,90 @@ const path = require('path');
 const fs = require('fs');
 
 const FuncionarioController = {
-    exibirOpcoes: (req, res) => {
-        res.render('listarFuncionarios');
+    index: (req, res) => {
+        res.render('index');
+    },
+    mostrarOpcoes: (req, res) => {
+        res.render('listarFuncionarios', {resultadoBusca:[], errors:[]});
     },
 
     // pesquisa e retonar um funcionario de acordo com o tipo de requisição
-    listarFuncionarios: (req, res) => {
+    pesquisarFuncionarios: (req, res) => {
+
+        let resultadoBusca = [];
 
         // pesquisa por nome
         if(req.query.nome){
             let {nome} = req.query;
-            let resultadoBusca = funcionarios.find(funcionario => {
+            resultadoBusca = funcionarios.filter(funcionario => {
                 return funcionario.nome == nome;
             });
 
-            // validando resultado da busca
-            if(!resultadoBusca){
-                res.send('Funcionario não encontrado!');
-            }else{
-                res.send(resultadoBusca);
-            }
         }
 
         // pesquisa por cpf
         if(req.query.cpf){
             let {cpf} = req.query;
-            let resultadoBusca = null;
             
             // validando cpf
-            if(!cpf || cpf.length != 11){
-                res.send('CPF inválido...')
+            if(cpf.length != 11){
+                return res.render('listarFuncionarios', {resultadoBusca, errors: ['cpf inválido']})
             } else {
-                resultadoBusca = funcionarios.find(funcionario => {
+                resultadoBusca = funcionarios.filter(funcionario => {
                     return funcionario.cpf == cpf;
                 });
             }
             
-            if(!resultadoBusca){
-                res.send('Funcionario não encontrado!');
-            }else{
-                res.send(resultadoBusca);
-            }
         }
 
         // pesquisa por cargo
         if(req.query.cargo){
             let {cargo} = req.query;
-            let resultadoBusca = funcionarios.filter(funcionario => {
+            resultadoBusca = funcionarios.filter(funcionario => {
                 return funcionario.cargo == cargo;
             });
-
-            if(resultadoBusca.length == 0){
-                res.send('Nenhum funcionário foi encontrado');
-            }else{
-                res.send(resultadoBusca);
-            }
         }
 
-        // pesquisa por data de cadastro
+        
         if(req.query.dataCad){
             let {dataCad} = req.query;
-
-            // converte a data recebida para formato dd/mm/yyyy
+            // pesquisa por data de cadastro no formato dd/mm/yyyy
             dataCad = dataCad.split('-').reverse().join('/');
-
-            let resultadoBusca = funcionarios.filter(funcionario => {
+            resultadoBusca = funcionarios.filter(funcionario => {
                 return funcionario.dataCad == dataCad;
             });
-
-            if(resultadoBusca.length == 0){
-                res.send('Nenhum funcionário foi encontrado');
-            }else{
-                res.send(resultadoBusca);
-            }
         }
 
         // pesquisa por UF nascimento
         if(req.query.ufNasc){
             let {ufNasc} = req.query;
-            let totalFuncionariosPorUf= 0;
 
-            let resultadoBusca = funcionarios.filter(funcionario => {
-                if(funcionario.ufNasc == ufNasc){
-                    totalFuncionariosPorUf++
-                    return funcionario;
-                }
+            resultadoBusca = funcionarios.filter(funcionario => {
+                return funcionario.ufNasc == ufNasc;
             })
-
-            if(resultadoBusca.length == 0){
-                res.send('Nenhuem funcionario foi encontrado')
-            }else{
-                res.send(resultadoBusca);   
-            }            
+           
         }
 
         // pesquisa por salario
         if(req.query.salario){
             let {salario} = req.query;
-            let resultadoBusca = funcionarios.filter(funcionario => {
+            resultadoBusca = funcionarios.filter(funcionario => {
                 return Number(funcionario.salario) <= Number(salario);
             });
 
-            if(resultadoBusca.length == 0){
-                res.send('Nenhum funcionário foi encontrado');
-            }else{
-                res.send(resultadoBusca);
-            } 
         }
 
         // pesquisa por status
         if(req.query.status){
             let {status} = req.query;
-            let resultadoBusca = funcionarios.filter(funcionario => {
+            resultadoBusca = funcionarios.filter(funcionario => {
                 return funcionario.status == status;
             });
-
-            if(resultadoBusca.length == 0){
-                res.send('Funcionario não encontrado!');
-            }else{
-                res.send(resultadoBusca);
-            }  
+ 
         }
+
+        res.render('listarFuncionarios', {resultadoBusca, errors: []});
+        
     },
     criarFuncionario: (req, res) => {
         res.render('criarFuncionario');
@@ -164,10 +127,10 @@ const FuncionarioController = {
         // adiciona as informações na base de dados
         fs.writeFileSync(path.join('database', 'funcionarios.json'), JSON.stringify(funcionarios));
 
-        res.send('Ação realizada com sucesso')
+        res.redirect('listar/pesquisar?cpf=' + funcionario.cpf);
     },
     exibirExcluirFuncionario: (req, res) => {
-        res.render('excluirFuncionario');
+        res.render('excluirFuncionario', {errors:[]});
     },
     excluirFuncionario: (req, res) => {
         let {cpf} = req.body;
@@ -175,7 +138,8 @@ const FuncionarioController = {
 
         // validando a entrada do cpf
         if(cpf.length != 11){
-            res.send('CPF inválido! Verique se o numero informado está correto.')
+            return res.render('excluirFuncionario', {errors: ['CPF inválido! Verique se o numero informado está correto.']})
+
         }else{
             novaListaFuncionarios = funcionarios.filter(funcionario => {
                 return funcionario.cpf != cpf;
@@ -184,13 +148,13 @@ const FuncionarioController = {
         
         // validando a variavel novaListaFuncionarios
         if(novaListaFuncionarios.length == funcionarios.length){
-            res.send('Não foi possível realizar esta ação. CPF inválido ou inexistente.')
+            return res.render('excluirFuncionario', {errors: ['Funcionario não encontrado']})
         }else{
             // adiciona as informações na base de dados sem o funcionario enviado via formulario
             fs.writeFileSync(path.join('database', 'funcionarios.json'), JSON.stringify(novaListaFuncionarios));
         } 
 
-        res.send('Ação realizada com sucesso! Funcionario excluido.')
+        res.redirect('/funcionarios/listar');
     }
 }
 

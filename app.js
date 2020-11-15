@@ -12,7 +12,8 @@ app.set('view engine', 'ejs');
 // essa configuração permite trabalhar com dados enviados a partir da URL
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/public', express.static(path.join(__dirname, 'public')));
+
 
 // essa configuração permite usar o metodos PUT e DELETE que não estão presentes em todos os navegadores
 app.use(methodOverride('_method'));
