@@ -39,4 +39,4 @@ DELETE '/api/funcionarios/:cpf' # Excluir Funcionario
 
 ## Frontend
 
-Para acessar a aplicação acesse a rota `/funcionarios`.
+Para acessar a aplicação acesse a rota `localhost:3000/funcionarios`.
