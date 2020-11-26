@@ -1,4 +1,4 @@
-Esse projeto é fruto de alguns estudos sobre API e tem como foco por em prática alguns conceitos.
+Esse projeto é fruto de alguns estudos sobre API e tem como foco por em prática alguns conceitos aprendidos.
 
 ## Setup 
 
